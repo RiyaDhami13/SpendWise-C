@@ -42,5 +42,35 @@ int main() {
     printf("Input a valid choice!\n");
   }
 }
+
+void addExpense() {
+  FILE *fp;
+  float amount;
+  char categeory[20], date[15];
+
+  fp = fopen("expenses.txt","a");
+
+  if(fp == NULL){
+    printf("Error opening file.\n");
+    return;
+  }
+
+printf("\nEnter an amount:");
+scanf("%f",&amount);
+
+printf("Enter categeroy(Food, Travel, or Others):");
+scanf("%s",categeory);
+
+printf("Enter the date(YYYY-MM-DD)");
+scanf("%s",date);
+
+fprintf(fp,"%f%s%s\n",amount,categeory,date);
+
+fclose(fp);
+
+printf("Expense added Successfully!\n");
+}
+
+
   return 0;
 }
