@@ -75,3 +75,23 @@ fclose(fp);
 
 printf("Expense added Successfully!\n");
 }
+
+void viewExpenses() {
+  FILE *fp;
+  float amount;
+  char categeory[20],date[15];
+
+  fp = fopen("expenses.txt","r");
+
+  if(fp == NULL) {
+    printf("No records found!\n");
+    return;
+  }
+
+  printf("\n -- Expenses Record---\n");
+
+  while(fscanf(fp,"%f%s%s",&amount,categeory,date)!= EOF) {
+    printf("Amount: Rs. %.2f | Categeory: %s | Date: %s \n",amount,categeory,date);
+  }
+  fclose(fp);
+}
