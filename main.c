@@ -11,6 +11,7 @@ int main() {
 
   int choice;
 
+  //while loop ..infinite loop chaluxa
   while(1){
   printf("--Spend Wise--\n");
   printf("what do you want to do\n");
@@ -42,6 +43,10 @@ int main() {
     printf("Input a valid choice!\n");
   }
 }
+  return 0;
+}
+
+
 
 void addExpense() {
   FILE *fp;
@@ -69,8 +74,4 @@ fprintf(fp,"%f%s%s\n",amount,categeory,date);
 fclose(fp);
 
 printf("Expense added Successfully!\n");
-}
-
-
-  return 0;
 }
