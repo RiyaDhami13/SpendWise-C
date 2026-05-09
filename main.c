@@ -1,3 +1,7 @@
+//Project: Spend Wise C
+
+
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -8,9 +12,9 @@ void analyzeExpenses();
 
 struct Expenses {
   float amount;
-  char categeory[20];
+  char category[20];
   char date[15];
-}
+};
 
 
 int main() {
@@ -19,7 +23,7 @@ int main() {
 
   while(1){
     printf("\n===== Spend Wise =====\n");
-    printf("what do you want to do\n");
+    printf("What would you like to do?\n");
     printf("1.Add Expense\n");
     printf("2. View Expense\n");
     printf("3. Analyze Expense\n");
@@ -67,12 +71,12 @@ void addExpense() {
   scanf("%f",&e.amount);
 
   printf("Enter category exactly as Food, Travel, or Others: ");
-  scanf("%s",e.categeory);
+  scanf("%s",e.category);
 
   printf("Enter the date(YYYY-MM-DD): ");
   scanf("%s",e.date);
 
-  fprintf(fp,"%f %s %s\n",e.amount,e.categeory,e.date);
+  fprintf(fp,"%f %s %s\n",e.amount,e.category,e.date);
   fclose(fp);
 
   printf("Expense added Successfully!\n");
@@ -90,9 +94,9 @@ void viewExpenses() {
     return;
   }
 
-  printf("\n -- Expenses Record---\n");
-  while(fscanf(fp,"%f %s %s",&e.amount,e.categeory,e.date) != EOF) {
-    printf("Amount: Rs. %.2f | Category: %s | Date: %s \n",e.amount,e.categeory,e.date);
+  printf("\n===== Expense Records =====\n");
+  while(fscanf(fp,"%f %s %s",&e.amount,e.category,e.date) != EOF) {
+    printf("Amount: Rs. %.2f | Category: %s | Date: %s \n",e.amount,e.category,e.date);
   }
   fclose(fp);
 }
@@ -112,13 +116,13 @@ void analyzeExpenses() {
     return;
   }
 
-  while(fscanf(fp,"%f %s %s",&e.amount,e.categeory,e.date) != EOF) {
+  while(fscanf(fp,"%f %s %s",&e.amount,e.category,e.date) != EOF) {
     total += e.amount;
     count++;
 
-    if(strcmp(e.categeory,"Food") == 0)
+    if(strcmp(e.category,"Food") == 0)
       food += e.amount;
-    else if(strcmp(e.categeory,"Travel") == 0)
+    else if(strcmp(e.category,"Travel") == 0)
       travel += e.amount;
     else
       others += e.amount;
@@ -130,7 +134,7 @@ void analyzeExpenses() {
     return;
   }
 
-  printf("\n--Expenses Analysis--\n");
+  printf("\n===== Expense Analysis =====\n");
   printf("Total spending: Rs. %.2f\n",total);
   printf("Number of expenses: %d\n",count);
   printf("Average spending: Rs. %.2f\n", total / count);
@@ -152,4 +156,6 @@ void analyzeExpenses() {
   // smart insight
   if (food > (total / 2))
     printf("\nYou are spending too much on food!\n");
+    else 
+    printf("\nYour spending habits look balanced\n");
 }
