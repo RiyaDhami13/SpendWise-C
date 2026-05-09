@@ -6,6 +6,13 @@ void addExpense();
 void viewExpenses();
 void analyzeExpenses();
 
+struct Expenses {
+  float amount;
+  char categeory[20];
+  char date[15];
+}
+
+
 int main() {
 
   int choice;
@@ -45,10 +52,10 @@ int main() {
   return 0;
 }
 
+//Function to add Expenses
 void addExpense() {
   FILE *fp;
-  float amount;
-  char category[20], date[15];
+  struct Expenses e;
 
   fp = fopen("expenses.txt","a");
   if(fp == NULL){
@@ -57,24 +64,25 @@ void addExpense() {
   }
 
   printf("\nEnter an amount:");
-  scanf("%f",&amount);
+  scanf("%f",&e.amount);
 
   printf("Enter category exactly as Food, Travel, or Others: ");
-  scanf("%s",category);
+  scanf("%s",e.categeory);
 
   printf("Enter the date(YYYY-MM-DD): ");
-  scanf("%s",date);
+  scanf("%s",e.date);
 
-  fprintf(fp,"%f %s %s\n",amount,category,date);
+  fprintf(fp,"%f %s %s\n",e.amount,e.categeory,e.date);
   fclose(fp);
 
   printf("Expense added Successfully!\n");
 }
 
+
+//Function to view Expenses
 void viewExpenses() {
   FILE *fp;
-  float amount;
-  char category[20], date[15];
+  struct Expenses e;
 
   fp = fopen("expenses.txt","r");
   if(fp == NULL) {
@@ -83,17 +91,19 @@ void viewExpenses() {
   }
 
   printf("\n -- Expenses Record---\n");
-  while(fscanf(fp,"%f %s %s",&amount,category,date) != EOF) {
-    printf("Amount: Rs. %.2f | Category: %s | Date: %s \n",amount,category,date);
+  while(fscanf(fp,"%f %s %s",&e.amount,e.categeory,e.date) != EOF) {
+    printf("Amount: Rs. %.2f | Category: %s | Date: %s \n",e.amount,e.categeory,e.date);
   }
   fclose(fp);
 }
 
+// Function to analyze all expense records
 void analyzeExpenses() {
   FILE *fp;
-  float amount, total = 0;
+  struct Expenses e;
+
+  float  total = 0;
   float food = 0, travel = 0, others = 0;
-  char category[20], date[15];
   int count=0;
 
   fp = fopen("expenses.txt","r");
@@ -102,16 +112,16 @@ void analyzeExpenses() {
     return;
   }
 
-  while(fscanf(fp,"%f %s %s",&amount,category,date) != EOF) {
-    total += amount;
+  while(fscanf(fp,"%f %s %s",&e.amount,e.categeory,e.date) != EOF) {
+    total += e.amount;
     count++;
 
-    if(strcmp(category,"Food") == 0)
-      food += amount;
-    else if(strcmp(category,"Travel") == 0)
-      travel += amount;
+    if(strcmp(e.categeory,"Food") == 0)
+      food += e.amount;
+    else if(strcmp(e.categeory,"Travel") == 0)
+      travel += e.amount;
     else
-      others += amount;
+      others += e.amount;
   }
   fclose(fp);
 
