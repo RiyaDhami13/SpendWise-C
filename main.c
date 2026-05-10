@@ -22,14 +22,16 @@ int main() {
   int choice;
 
   while(1){
-    printf("\n===== Spend Wise =====\n");
+    printf("\n=============================\n");
+    printf("         Spend Wise \n");
+    printf("\n=============================\n");
     printf("What would you like to do?\n");
     printf("1.Add Expense\n");
     printf("2. View Expense\n");
     printf("3. Analyze Expense\n");
     printf("4. Exit\n");
 
-    printf("Enter your choice\n");
+    printf("Enter your choice: ");
     scanf("%d",&choice);
 
     switch(choice) {
@@ -46,7 +48,7 @@ int main() {
         break;
 
       case 4:
-        printf("Exiting program---\n");
+        printf("\nThank you for using Spend Wise!\n");
         return 0;
 
       default:
@@ -70,7 +72,7 @@ void addExpense() {
   printf("\nEnter an amount:");
   scanf("%f",&e.amount);
 
-  printf("Enter category exactly as Food, Travel, or Others: ");
+  printf("Enter category (Food/Travel/Education/Entertainment/Others): ");
   scanf("%s",e.category);
 
   printf("Enter the date(YYYY-MM-DD): ");
@@ -107,8 +109,11 @@ void analyzeExpenses() {
   struct Expenses e;
 
   float  total = 0;
-  float food = 0, travel = 0, others = 0;
+  float food = 0, travel = 0;
+  float entertainment = 0, education = 0;
+  float others = 0;
   int count=0;
+  float budget;
 
   fp = fopen("expenses.txt","r");
   if(fp == NULL) {
@@ -120,15 +125,25 @@ void analyzeExpenses() {
     total += e.amount;
     count++;
 
-    if(strcmp(e.category,"Food") == 0)
-      food += e.amount;
-    else if(strcmp(e.category,"Travel") == 0)
-      travel += e.amount;
-    else
-      others += e.amount;
-  }
+  if(strcmp(e.category,"Food") == 0)
+  food += e.amount;
+
+  else if(strcmp(e.category,"Travel") == 0)
+  travel += e.amount;
+
+  else if(strcmp(e.category,"Education") == 0)
+  education += e.amount;
+
+  else if(strcmp(e.category,"Entertainment") == 0)
+  entertainment += e.amount;
+
+  else
+  others += e.amount;
+
   fclose(fp);
 
+  printf("\nEnter your monthly budget: ");
+  scanf("%f",&budget);
   if(count == 0) {
     printf("No expenses recorded.\n");
     return;
@@ -142,6 +157,8 @@ void analyzeExpenses() {
   printf("\nCategory Breakdown\n");
   printf("Food spending: Rs. %.2f\n", food);
   printf("Travel spending: Rs. %.2f\n", travel);
+  printf("Education spending: Rs.%.2f\n",education);
+  printf("Entertainment spendin: Rs.%.2f\n",entertainment);
   printf("Other spending: Rs. %.2f\n", others);
 
   // highest category
@@ -154,8 +171,16 @@ void analyzeExpenses() {
   }
 
   // smart insight
-  if (food > (total / 2))
+if (food > (total / 2))
     printf("\nYou are spending too much on food!\n");
-    else 
+else 
     printf("\nYour spending habits look balanced\n");
+
+if(total > budget)
+    printf("Warning: You exceeded your budget!\n");
+else
+    printf("Good! You are within your budget.\n");
+
+printf("\n-----------------------------\n");
+}
 }
