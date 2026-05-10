@@ -73,7 +73,7 @@ void addExpense() {
   scanf("%f",&e.amount);
 
   printf("Enter category (Food/Travel/Education/Entertainment/Others): ");
-  scanf("%s",e.category);
+  scanf("%19s",e.category);
 
   printf("Enter the date(YYYY-MM-DD): ");
   scanf("%s",e.date);
@@ -139,7 +139,7 @@ void analyzeExpenses() {
 
   else
   others += e.amount;
-
+  }
   fclose(fp);
 
   printf("\nEnter your monthly budget: ");
@@ -158,17 +158,30 @@ void analyzeExpenses() {
   printf("Food spending: Rs. %.2f\n", food);
   printf("Travel spending: Rs. %.2f\n", travel);
   printf("Education spending: Rs.%.2f\n",education);
-  printf("Entertainment spendin: Rs.%.2f\n",entertainment);
+  printf("Entertainment spending: Rs.%.2f\n",entertainment);
   printf("Other spending: Rs. %.2f\n", others);
 
   // highest category
-  if (food > travel && food > others) {
-    printf("\nHighest Spending: Food\n");
-  } else if (travel > food && travel > others) {
-    printf("\nHighest Spending: Travel\n");
-  } else {
-    printf("\nHighest Spending: Others\n");
+  float max = food;
+  char highest[20] = "Food";
+  
+  if(travel > max) {
+    max = travel;
+    strcpy(highest, "Travel");
   }
+  if(education > max) {
+    max = education;
+    strcpy(highest, "Education");
+  }
+  if(entertainment > max) {
+    max = entertainment;
+    strcpy(highest, "Entertainment");
+  }
+  if(others > max) {
+    max = others;
+    strcpy(highest, "Others");
+  }
+  printf("\nHighest Spending: %s\n", highest);
 
   // smart insight
 if (food > (total / 2))
@@ -182,5 +195,4 @@ else
     printf("Good! You are within your budget.\n");
 
 printf("\n-----------------------------\n");
-}
 }
