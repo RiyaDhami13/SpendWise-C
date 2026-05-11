@@ -184,7 +184,7 @@ void analyzeExpenses() {
   printf("\nHighest Spending: %s\n", highest);
 
   // smart insight
-if (food > (total / 2))
+if (food > (total * 0.6))
     printf("\nYou are spending too much on food!\n");
 else 
     printf("\nYour spending habits look balanced\n");
