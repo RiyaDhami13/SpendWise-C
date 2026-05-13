@@ -11,3 +11,6 @@ A lightweight, terminal-based expense tracking system written entirely in C
 - Analyze total and average spending
 - Category-wise expense analysis
 - Budget comparison feature
+
+
+## Demo Link *https://youtu.be/V3avz6Iy_cY?si=weoPOqK5V_GtDm_D*
