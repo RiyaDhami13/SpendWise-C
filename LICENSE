@@ -1,16 +1,13 @@
 
 ### Then update your form answers:
+### Description 
 
-### Description (improved)
-Use this instead:
 
 > SpendWise-C is a lightweight CLI expense tracker built in C that allows users to record, view, and analyze expenses. It uses structs, functions, and file handling for persistent storage and includes category-wise spending analysis and budget comparison.
 
 ### AI Usage
-Be honest but confident:
+
 
 > AI was used for brainstorming ideas, debugging support, and improving project documentation. The project logic, implementation, testing, and customization were done by our team.
 
-That sounds professional and transparent.
 
-After updating README + resubmitting, there’s a strong chance it gets approved.
