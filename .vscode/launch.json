@@ -8,8 +8,13 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
+<<<<<<< HEAD
       "cwd": "e:/first sem/Spend Wise",
       "program": "e:/first sem/Spend Wise/build/Debug/outDebug",
+=======
+      "cwd": "e:/spendwise/SpendWise-C",
+      "program": "e:/spendwise/SpendWise-C/build/Debug/outDebug",
+>>>>>>> a747c06 (added the extension file)
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
@@ -19,6 +24,7 @@
           "ignoreFailures": true
         }
       ]
+<<<<<<< HEAD
     },
     {
       "name": "C/C++: gcc.exe build and debug active file",
@@ -45,6 +51,8 @@
         }
       ],
       "preLaunchTask": "C/C++: gcc.exe build active file"
+=======
+>>>>>>> a747c06 (added the extension file)
     }
   ]
 }
