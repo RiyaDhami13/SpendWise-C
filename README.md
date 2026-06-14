@@ -1,37 +1,31 @@
-# SpendWise-C 💰
-A lightweight, terminal-based expense tracking system written entirely in C.
+# SpendWise-C 💼
 
-SpendWise allows users to record expenses, store them permanently, and analyze spending patterns such as total expenditure and category-wise distribution.
+SpendWise-C is a lightweight, terminal-based financial logging utility written in standard C. I built this over a single session lasting 3 hours and 17 minutes to practice manual file tracking, structure formatting, and console menu boundaries. 
 
-## 📺 Project Demo
-Watch the program in action here: [SpendWise Demo Video](https://youtu.be/Q-0WUm8FaR0?si=jcScA7NTmmdLctOZ)
+The application provides a quick, local framework to log income, track daily debits, and review your balance history directly from the terminal.
 
-## 🚀 How to Run
-1. **Source Code:** Compile `spend-wise.c` using GCC.
-2. **Executable:** You can run the pre-compiled `spend-wise.exe` (Windows only).
+## Tech Stack
+- **Language:** Core C
+- **Compiler:** GCC
+- **Core Libraries:** `stdio.h`, `stdlib.h`, `string.h`
 
-## Program Features ✨
-- **Add daily expenses:** Input amount, category, and date.
-- **Permanent Storage:** Saves records in `expenses.txt`.
-- **View Records:** Displays all saved expenses in a formatted list.
-- **Smart Analysis:** - Calculates total and average spending.
-  - Identifies highest spending category.
-  - Compares spending against a set budget.
+## How It Works Under the Hood
 
-## Concepts Used 🧠
-This project applies fundamental C programming concepts:
-- **Structures (`struct`):** To organize expense data.
-- **File Handling:** Using `fopen`, `fprintf`, and `fscanf` for persistence.
-- **Control Flow:** `while` loops for the menu and `switch` cases for logic.
-- **String Manipulation:** Using `strcmp` for category filtering.
+The application relies on direct structural mapping and local flat-file storage to stay lightweight and fast:
 
-## Project Structure 📂
-```text
-SpendWise-C/
-│── .vscode/           # Editor configuration and debugger settings
-│── spend-wise.c       # Main source code
-│── spend-wise.exe     # Compiled executable for Windows
-│── expenses.txt       # Data file where expenses are stored
-│── .gitignore         # Prevents unnecessary files from being tracked
-│── LICENSE            # Project license
-└── README.md          # Project documentation
+1. **Structural Data Mapping:** The project uses a custom `struct` array to format and manage transaction metadata, processing cash floats, category labels, and entry timestamps inside a unified memory block.
+
+2. **Persistent File Streams:** Instead of wiping data when the console closes, the logic implements standard file operations (`fopen`, `fprintf`, `fscanf`). Every transaction is appended instantly to a local text-based storage file, which is loaded back into memory the next time the executable runs.
+
+3. **Arithmetic Summarization:** Linear arithmetic loops handle balance calculations. When you request a summary, the program runs through the active file entries, computes total spend vs. total income, and formats a clean breakdown table directly in the console output.
+
+4. **Menu Control Flow:** A continuous `switch-case` block drives the terminal UI. It contains validation checks to catch incorrect numeric inputs (like inputting text where a balance float is expected) to avoid core segmentation faults.
+
+## How to Compile and Run Locally
+
+Ensure you have a standard C compiler like GCC installed on your system path.
+
+1. Clone the repository workspace:
+   ```bash
+   git clone [https://github.com/YOUR_GITHUB_USERNAME/SpendWise-C.git](https://github.com/YOUR_GITHUB_USERNAME/SpendWise-C.git)
+   cd SpendWise-C
