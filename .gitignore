@@ -32,6 +32,8 @@
 *.exe
 *.out
 *.app
+spend-wise
+SpendWise-C
 *.i*86
 *.x86_64
 *.hex
